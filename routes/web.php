@@ -18,3 +18,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/create', function () {
+    return view('create');
+})->name('create');
+
+Route::get('/list', function () {
+    return view('list');
+})->name('list');
+
+Route::post('/list/post', 'Student\StudentController@showList')->name('studentsList');
+
+
+
+
+//Route::get('ads/{form}', 'Ads\StudentController@index');
+
+

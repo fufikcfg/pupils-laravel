@@ -18,6 +18,7 @@ class CreateStudentsTable extends Migration
             $table->string('SLastName');
             $table->string('SFirstName');
             $table->string('SMidName');
+            $table->integer('SClass');
             $table->date('SBirthDate');
             $table->timestamps();
         });
