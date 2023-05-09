@@ -1,7 +1,17 @@
 @extends('home')
 
 @section('forms')
-<form name="form-add-student" method="post">
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+<form name="form-add-student" action="{{ route('create-student-submit') }}" method="post">
+    @csrf
     <div class="input-group mb-3">
         <span class="input-group-text">@</span>
         <div class="form-floating">

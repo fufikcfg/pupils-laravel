@@ -29,8 +29,13 @@ Route::get('/list', function () {
 
 Route::post('/list/post', 'Student\StudentController@showList')->name('studentsList');
 
+Route::post('/create/submit', 'Student\StudentController@store')->name('create-student-submit');
 
+Route::get('/edit', 'Student\StudentController@showByEdit')->name('editByList');
 
+Route::get('/edit/{id}', 'Student\StudentController@destroy')->name('destroy-student');
+
+Route::get('/report', 'Student\StudentController@showReport')->name('report');
 
 //Route::get('ads/{form}', 'Ads\StudentController@index');
 

@@ -26,10 +26,8 @@
 
                     success: function (data) {
 
-                        $('.fsdfg').html(data.arrayID)
+                         $('.fsdfg').html(data.arrayID)
 
-                        // let arrayStudents = data.arrayID;
-                        //
                         // $('.td-stud').remove();
                         //
                         // let table = document.querySelector('.table');
@@ -80,10 +78,5 @@
         <th>Класс</th>
     </tr>
 </table>
-    <div class="fsdfg"></div>
+    <div class="fsdfg"> </div>
 @endsection
-{{--<script src="../assets/js/jquery-3.6.4.min.js"></script>--}}
-{{--<script src="../assets/js/ajax-list-students.js"></script>--}}
-{{--<script src="../assets/js/bootstrap.bundle.js"></script>--}}
-{{--</body>--}}
-{{--</html>--}}
