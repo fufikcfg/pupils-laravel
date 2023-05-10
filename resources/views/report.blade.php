@@ -7,6 +7,8 @@
        <li class="list-group-item">{{ $itemLittle->SLastName }}</li>
        <li class="list-group-item">{{ $itemLittle->SFirstName }}</li>
        <li class="list-group-item">{{ $itemLittle->SMidName }}</li>
+       <li class="list-group-item">{{ \Carbon\Carbon::createFromTimestamp(strtotime($itemLittle->SBirthDate))->format('d.m.Y')}}</li>
+       <li class="list-group-item">{{ $itemLittle->SClass }}</li>
        @endforeach
     </ul>
     <div><br></div>
@@ -32,7 +34,7 @@
                 <td>{{ $bornItem->SLastName }}</td>
                 <td>{{ $bornItem->SFirstName }}</td>
                 <td>{{ $bornItem->SMidName }}</td>
-                <td>{{ $bornItem->SBirthDate }}</td>
+                <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($bornItem->SBirthDate))->format('d.m.Y') }}</td>
                 <td>{{ $bornItem->SClass }}</td>
             </tr>
         @endforeach

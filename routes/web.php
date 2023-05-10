@@ -37,6 +37,5 @@ Route::get('/edit/{id}', 'Student\StudentController@destroy')->name('destroy-stu
 
 Route::get('/report', 'Student\StudentController@showReport')->name('report');
 
-//Route::get('ads/{form}', 'Ads\StudentController@index');
 
 

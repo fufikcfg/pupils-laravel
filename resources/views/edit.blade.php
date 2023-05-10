@@ -19,13 +19,22 @@
             <td>{{ $item->SLastName }}</td>
             <td>{{ $item->SFirstName }}</td>
             <td>{{ $item->SMidName }}</td>
-            <td>{{ $item->SBirthDate }}</td>
+            <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($item->SBirthDate))->format('d.m.Y') }}</td>
             <td>{{ $item->SClass }}</td>
-            <td><a href="{{ route('destroy-student', $item->id) }}" class="link-danger">Удалить</a></td>
+            <td><a href="{{ route('destroy-student', $item->id) }}" id="btn-del" class="link-danger">Удалить</a></td>
         </tr>
         @endforeach
     </form>
     </thead>
 </table>
-<button style="width: 100%" type="button" id="btn-confirm" class="btn btn-primary">Принять</button>
+<script>
+    $(document).ready(function () {
+        $('.link-danger').click(function(e){
+            var result = confirm("Are you sure you want to delete this user?");
+            if(!result) {
+                e.preventDefault();
+            }
+        });
+    })
+</script>
 @endsection
