@@ -45,7 +45,7 @@ class StudentController extends Controller
 
     public function showByEdit()
     {
-        $list = Students::all();
+        $list = Students::all()->sortBy('SClass');
 
         return view('edit', compact('list'));
     }
