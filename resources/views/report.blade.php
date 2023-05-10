@@ -4,11 +4,9 @@
     <ul class="list-group">
         <li class="list-group-item">Самый младший первоклассник из всей школы:</li>
        @foreach($little as $itemLittle)
-       <li class="list-group-item">{{ $itemLittle->SLastName }}</li>
-       <li class="list-group-item">{{ $itemLittle->SFirstName }}</li>
-       <li class="list-group-item">{{ $itemLittle->SMidName }}</li>
-       <li class="list-group-item">{{ \Carbon\Carbon::createFromTimestamp(strtotime($itemLittle->SBirthDate))->format('d.m.Y')}}</li>
-       <li class="list-group-item">{{ $itemLittle->SClass }}</li>
+       <li class="list-group-item">ФИО: {{ $itemLittle->SLastName }} {{ $itemLittle->SFirstName }} {{ $itemLittle->SMidName }}</li>
+       <li class="list-group-item">Родился: {{ \Carbon\Carbon::createFromTimestamp(strtotime($itemLittle->SBirthDate))->format('d.m.Y')}}</li>
+       <li class="list-group-item">Учится в {{ $itemLittle->SClass }} классе</li>
        @endforeach
     </ul>
     <div><br></div>
