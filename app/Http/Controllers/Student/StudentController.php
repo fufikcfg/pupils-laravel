@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
+
     public function store(Request $request)
     {
         $student = new Students();
@@ -30,12 +31,12 @@ class StudentController extends Controller
 
         $student->save();
 
-        return redirect('/create');
+        return redirect('/home/create');
     }
 
     public function showList(Request $request)
     {
-        $list = Students::where('SClass', $request->valueElement)->get();
+        $list = Students::query()->orderBy('SMidName', 'ASC')->where('SClass', $request->valueElement)->get();
 
         return [
             "status" => true,
@@ -54,21 +55,18 @@ class StudentController extends Controller
     {
         $list = Students::query()->where('id', $id)->delete();
 
-        return redirect('/edit');
+        return redirect('/home/edit');
     }
 
     public function showReport()
     {
-        $little = Students::query()->where('SClass', 1)->orderByDesc('SBirthDate')->take(1)->get();
-
-        $countTwoClass = Students::query()->where('SClass', 2)->count();
-
-        $bornInJuly = Students::query()->whereMonth('SBirthDate', 7)->get();
-
         return view('report',
-            ['little' => $little,
-                'countTwoClass' => $countTwoClass,
-                'bornInJuly' => $bornInJuly
+            [
+                'little' => Students::query()->where('SClass', 1)->orderByDesc('SBirthDate')->take(1)->get(),
+
+                'countTwoClass' => Students::query()->where('SClass', 2)->count(),
+
+                'bornInJuly' => Students::query()->whereMonth('SBirthDate', 7)->get()
             ]);
     }
 }
