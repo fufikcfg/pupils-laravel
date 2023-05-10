@@ -25,6 +25,8 @@ $(document).ready(function () {
 
                 let arrayStudents = data.arrayID;
 
+                console.log(JSON.stringify(data.arrayID))
+
                 $('.td-stud').remove();
 
                 let ruDate = new Intl.DateTimeFormat('ru');

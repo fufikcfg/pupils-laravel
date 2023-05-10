@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Models\Students;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -34,11 +35,11 @@ class StudentController extends Controller
 
     public function showList(Request $request)
     {
-        $list = Students::where('SClass', $request->valueElement)->first();
+        $list = Students::where('SClass', $request->valueElement)->get();
 
         return [
             "status" => true,
-            "arrayID" => json_encode($list)
+            "arrayID" => $list,
         ];
     }
 
@@ -58,9 +59,7 @@ class StudentController extends Controller
 
     public function showReport()
     {
-        $little = Students::query()->where('SClass', 1)->orderByDesc('SBirthDate')->get();
-
-        $little->first();
+        $little = Students::query()->where('SClass', 1)->orderByDesc('SBirthDate')->take(1)->get();
 
         $countTwoClass = Students::query()->where('SClass', 2)->count();
 

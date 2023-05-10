@@ -5,18 +5,14 @@
         $(document).ready(function () {
             $('#btn-drop').click(function(e) {
 
-
                 e.preventDefault();
 
                 let valueElement = $('.form-select option:selected').val();
 
-                console.log(valueElement)
-
-
-
                 $.ajax({
                     url: "{{ route('studentsList') }}",
                     type: 'POST',
+                    dataType: 'json',
                     data: {
                         valueElement: valueElement
                     },
@@ -26,29 +22,24 @@
 
                     success: function (data) {
 
-                         $('.fsdfg').html(data.arrayID)
+                        let arrayStudents = data.arrayID;
 
-                        // $('.td-stud').remove();
-                        //
-                        // let table = document.querySelector('.table');
-                        //
-                        // for (let i = 0; i < arrayStudents.length; i++) {
-                        //
-                        //     let tr = document.createElement('tr');
-                        //
-                        //     for (let j = 0; j < arrayStudents[i].length; j++) {
-                        //
-                        //         let td = document.createElement('td');
-                        //
-                        //         td.classList.add("td-stud");
-                        //
-                        //         td.innerHTML = arrayStudents[i][j];
-                        //         tr.appendChild(td);
-                        //
-                        //     }
-                        //
-                        //     table.appendChild(tr);
-                        // }
+                        const tableData = arrayStudents.map(value => {
+                            return (
+                                `<tr>
+                                   <td>${value.id}</td>
+                                   <td>${value.SMidName}</td>
+                                   <td>${value.SLastName}</td>
+                                   <td>${value.SFirstName}</td>
+                                   <td>${value.SBirthDate}</td>
+                                   <td>${value.SClass}</td>
+                                </tr>`
+                                  );
+                        }).join('');
+
+                        const tableBody = document.querySelector("#tableBody");
+                        tableBody.innerHTML = tableData;
+
                     }
                 })
             });
@@ -69,6 +60,7 @@
 </select>
 <button class="btn btn-success" id="btn-drop" typeof="submit">Показать</button>
 <table class="table">
+    <thead>
     <tr>
         <th>id</th>
         <th>Фамилия</th>
@@ -77,6 +69,9 @@
         <th>Дата рождения</th>
         <th>Класс</th>
     </tr>
+    </thead>
+    <tbody id="tableBody">
+
+    </tbody>
 </table>
-    <div class="fsdfg"> </div>
 @endsection
