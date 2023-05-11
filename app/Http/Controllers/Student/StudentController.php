@@ -44,18 +44,11 @@ class StudentController extends Controller
         ];
     }
 
-    public function showByEdit()
-    {
-        $list = Students::all()->sortBy('SClass')->toArray();
-
-        return view('edit', compact('list'));
-    }
-
     public function destroy($id)
     {
         Students::query()->where('id', $id)->delete();
 
-        return redirect('/home/edit');
+        return redirect('/home/list');
     }
 
     public function showReport()

@@ -19,8 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
-{{--    <script src="{{ asset('js/ajax-list-student.js') }}"></script>--}}
-</head>
+    <script src="{{ asset('js/ajax-list-student.js') }}"></script></head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">

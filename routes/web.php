@@ -17,9 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => 'admin' ],function () {
+Route::group(['middleware' => 'admin'],function () {
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
 
     Route::get('/home/create', function () {
         return view('create');
@@ -29,15 +31,13 @@ Route::group(['middleware' => 'admin' ],function () {
         return view('list');
     })->name('list');
 
-    Route::post('/home/list/post', 'Student\StudentController@showList')->name('studentsList');
+    Route::post('/home/list/post', [\App\Http\Controllers\Student\StudentController::class, 'showList']);
 
-    Route::post('/home/create/submit', 'Student\StudentController@store')->name('create-student-submit');
+    Route::post('/home/create/submit', [\App\Http\Controllers\Student\StudentController::class, 'store'])->name('create-student-submit');
 
-    Route::get('/home/edit', 'Student\StudentController@showByEdit')->name('editByList');
+    Route::get('/home/edit/{id}', [\App\Http\Controllers\Student\StudentController::class, 'destroy'])->name('destroy-student');
 
-    Route::get('/home/edit/{id}', 'Student\StudentController@destroy')->name('destroy-student');
-
-    Route::get('/home/report', 'Student\StudentController@showReport')->name('report');
+    Route::get('/home/report', [\App\Http\Controllers\Student\StudentController::class, 'showReport'])->name('report');
 });
 
 

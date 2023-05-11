@@ -1,18 +1,15 @@
-$(document).ready(function () {
-    $('#btn-drop').click(function(e) {
 
+$(document).ready(function () {
+
+    $('#btn-drop').click(function(e) {
 
         e.preventDefault();
 
         let valueElement = $('.form-select option:selected').val();
 
-        console.log(valueElement)
-
-
-
         $.ajax({
-            url: '',
-            type: 'GET',
+            url: "/home/list/post",
+            type: 'POST',
             dataType: 'json',
             data: {
                 valueElement: valueElement
@@ -25,35 +22,31 @@ $(document).ready(function () {
 
                 let arrayStudents = data.arrayID;
 
-                console.log(JSON.stringify(data.arrayID))
+                const tableData = arrayStudents.map(value => {
+                    return (
+                        `<tr>
+                                   <td>${value.id}</td>
+                                   <td>${value.SMidName}</td>
+                                   <td>${value.SLastName}</td>
+                                   <td>${value.SFirstName}</td>
+                                   <td>${value.SBirthDate}</td>
+                                   <td>${value.SClass}</td>
+                                   <td><a href="/home/edit/${value.id}" id="btn-del" class="link-danger">Удалить</a></td>
+                                </tr>`
+                    );
+                }).join('');
+                const tableBody = document.querySelector("#tableBody");
+                tableBody.innerHTML = tableData;
 
-                $('.td-stud').remove();
-
-                let ruDate = new Intl.DateTimeFormat('ru');
-
-                let table = document.querySelector('.table');
-
-
-                for (let i = 0; i < arrayStudents.length; i++) {
-
-                    let tr = document.createElement('tr');
-
-
-                    for (let j = 0; j < arrayStudents[i].length; j++) {
-
-                        let td = document.createElement('td');
-
-                        td.classList.add("td-stud");
-
-                        td.innerHTML = arrayStudents[i][j];
-                        tr.appendChild(td);
-
-                    }
-
-                    table.appendChild(tr);
-                }
+                $(document).ready(function () {
+                    $('.link-danger').click(function(e){
+                        var result = confirm("Are you sure you want to delete this user?");
+                        if(!result) {
+                            e.preventDefault();
+                        }
+                    });
+                })
             }
         })
     });
 })
-

@@ -1,50 +1,6 @@
 @extends('home')
 
 @section('forms')
-    <script>
-        $(document).ready(function () {
-            $('#btn-drop').click(function(e) {
-
-                e.preventDefault();
-
-                let valueElement = $('.form-select option:selected').val();
-
-                $.ajax({
-                    url: "{{ route('studentsList') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        valueElement: valueElement
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-
-                    success: function (data) {
-
-                        let arrayStudents = data.arrayID;
-
-                        const tableData = arrayStudents.map(value => {
-                            return (
-                                `<tr>
-                                   <td>${value.id}</td>
-                                   <td>${value.SMidName}</td>
-                                   <td>${value.SLastName}</td>
-                                   <td>${value.SFirstName}</td>
-                                   <td>${value.SBirthDate}</td>
-                                   <td>${value.SClass}</td>
-                                </tr>`
-                                  );
-                        }).join('');
-
-                        const tableBody = document.querySelector("#tableBody");
-                        tableBody.innerHTML = tableData;
-
-                    }
-                })
-            });
-        })
-    </script>
 <select class="form-select" id="select-class" aria-label="Default select example">
     <option value="1">1 класс</option>
     <option value="2">2 класс</option>
@@ -68,6 +24,7 @@
         <th>Отчество</th>
         <th>Дата рождения</th>
         <th>Класс</th>
+        <th>Удалить</th>
     </tr>
     </thead>
     <tbody id="tableBody">
