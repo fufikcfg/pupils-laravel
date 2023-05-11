@@ -36,7 +36,7 @@ class StudentController extends Controller
 
     public function showList(Request $request)
     {
-        $list = Students::query()->orderBy('SMidName', 'ASC')->where('SClass', $request->valueElement)->get();
+        $list = Students::query()->orderBy('SMidName', 'ASC')->where('SClass', $request->valueElement)->get()->toArray();
 
         return [
             "status" => true,
@@ -46,14 +46,14 @@ class StudentController extends Controller
 
     public function showByEdit()
     {
-        $list = Students::all()->sortBy('SClass');
+        $list = Students::all()->sortBy('SClass')->toArray();
 
         return view('edit', compact('list'));
     }
 
     public function destroy($id)
     {
-        $list = Students::query()->where('id', $id)->delete();
+        Students::query()->where('id', $id)->delete();
 
         return redirect('/home/edit');
     }
@@ -62,11 +62,11 @@ class StudentController extends Controller
     {
         return view('report',
             [
-                'little' => Students::query()->where('SClass', 1)->orderByDesc('SBirthDate')->take(1)->get(),
+                'little' => Students::query()->where('SClass', 1)->orderByDesc('SBirthDate')->take(1)->get()->toArray(),
 
                 'countTwoClass' => Students::query()->where('SClass', 2)->count(),
 
-                'bornInJuly' => Students::query()->whereMonth('SBirthDate', 7)->get()
+                'bornInJuly' => Students::query()->whereMonth('SBirthDate', 7)->get()->toArray()
             ]);
     }
 }

@@ -15,13 +15,13 @@
     <form class="get-id-checkbox">
         @foreach($list as $item)
         <tr>
-            <td>{{ $item->id }}</td>
-            <td>{{ $item->SLastName }}</td>
-            <td>{{ $item->SFirstName }}</td>
-            <td>{{ $item->SMidName }}</td>
-            <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($item->SBirthDate))->format('d.m.Y') }}</td>
-            <td>{{ $item->SClass }}</td>
-            <td><a href="{{ route('destroy-student', $item->id) }}" id="btn-del" class="link-danger">Удалить</a></td>
+            <td>{{ $item['id'] }}</td>
+            <td>{{ $item['SLastName'] }}</td>
+            <td>{{ $item['SFirstName'] }}</td>
+            <td>{{ $item['SMidName'] }}</td>
+            <td>{{ $item['SBirthDate'] }}</td>
+            <td>{{ $item['SClass'] }}</td>
+            <td><a href="{{ route('destroy-student', $item['id']) }}" id="btn-del" class="link-danger">Удалить</a></td>
         </tr>
         @endforeach
     </form>

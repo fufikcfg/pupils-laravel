@@ -4,9 +4,9 @@
     <ul class="list-group">
         <li class="list-group-item">Самый младший первоклассник из всей школы:</li>
        @foreach($little as $itemLittle)
-       <li class="list-group-item">ФИО: {{ $itemLittle->SLastName }} {{ $itemLittle->SFirstName }} {{ $itemLittle->SMidName }}</li>
-       <li class="list-group-item">Родился: {{ \Carbon\Carbon::createFromTimestamp(strtotime($itemLittle->SBirthDate))->format('d.m.Y')}}</li>
-       <li class="list-group-item">Учится в {{ $itemLittle->SClass }} классе</li>
+       <li class="list-group-item">ФИО: {{ $itemLittle['SLastName'] }} {{ $itemLittle['SFirstName'] }} {{ $itemLittle['SMidName'] }}</li>
+       <li class="list-group-item">Родился: {{ $itemLittle['SBirthDate']  }}</li>
+       <li class="list-group-item">Учится в {{ $itemLittle['SClass'] }} классе</li>
        @endforeach
     </ul>
     <div><br></div>
@@ -28,12 +28,12 @@
         </tr>
         @foreach($bornInJuly as $bornItem)
             <tr>
-                <td>{{ $bornItem->id }}</td>
-                <td>{{ $bornItem->SLastName }}</td>
-                <td>{{ $bornItem->SFirstName }}</td>
-                <td>{{ $bornItem->SMidName }}</td>
-                <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($bornItem->SBirthDate))->format('d.m.Y') }}</td>
-                <td>{{ $bornItem->SClass }}</td>
+                <td>{{ $bornItem['id'] }}</td>
+                <td>{{ $bornItem['SLastName'] }}</td>
+                <td>{{ $bornItem['SFirstName'] }}</td>
+                <td>{{ $bornItem['SMidName'] }}</td>
+                <td>{{ $bornItem['SBirthDate'] }}</td>
+                <td>{{ $bornItem['SClass'] }}</td>
             </tr>
         @endforeach
         </thead>
