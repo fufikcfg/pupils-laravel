@@ -2,17 +2,10 @@
 
 @section('forms')
 <select class="form-select" id="select-class" aria-label="Default select example">
-    <option value="1">1 класс</option>
-    <option value="2">2 класс</option>
-    <option value="3">3 класс</option>
-    <option value="4">4 класс</option>
-    <option value="5">5 класс</option>
-    <option value="6">6 класс</option>
-    <option value="7">7 класс</option>
-    <option value="8">8 класс</option>
-    <option value="9">9 класс</option>
-    <option value="10">10 класс</option>
-    <option value="11">11 класс</option>
+    <option value="1">1А класс</option>
+    <option value="2">1Б класс</option>
+    <option value="3">1В класс</option>
+    <option value="4">1Г класс</option>
 </select>
 <button class="btn btn-success" id="btn-drop" typeof="submit">Показать</button>
 <table class="table">
@@ -23,7 +16,6 @@
         <th>Имя</th>
         <th>Отчество</th>
         <th>Дата рождения</th>
-        <th>Класс</th>
         <th>Удалить</th>
     </tr>
     </thead>

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Requests\StudentsStoreRequest;
+use App\Models\Classes;
 use App\Models\Students;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Psy\Command\ListCommand\ClassEnumerator;
 
 class StudentController extends Controller
 {
@@ -31,7 +33,7 @@ class StudentController extends Controller
 
     public function showList(Request $request)
     {
-        $list = Students::query()->orderBy('SMidName', 'ASC')->where('SClass', $request->valueElement)->get()->toArray();
+        $list = Students::query()->orderBy('SMidName', 'ASC')->where('classes_id', $request->valueElement)->get()->toArray();
 
         return [
             "status" => true,
@@ -48,13 +50,17 @@ class StudentController extends Controller
 
     public function showReport()
     {
+//
+//        $a = Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->first();
+////        Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->take(1)->get()->toArray()
+//        dd($a->classes()->associate(Classes::find(1)->get()->toArray()));
         return view('report',
             [
-                'little' => Students::query()->where('SClass', 1)->orderByDesc('SBirthDate')->take(1)->get()->toArray(),
+                'little' => Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->take(1)->get()->toArray(),
 
-                'countTwoClass' => Students::query()->where('SClass', 2)->count(),
+                'countTwoClass' => Students::query()->where('classes_id', 2)->count(),
 
-                'bornInJuly' => Students::query()->whereMonth('SBirthDate', 7)->get()->toArray()
+                'bornInJuly' => Students::query()->whereMonth('SBirthDate', 7)->get()->toArray(),
             ]);
     }
 }

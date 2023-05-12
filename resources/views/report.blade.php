@@ -6,7 +6,7 @@
        @foreach($little as $itemLittle)
        <li class="list-group-item">ФИО: {{ $itemLittle['SLastName'] }} {{ $itemLittle['SFirstName'] }} {{ $itemLittle['SMidName'] }}</li>
        <li class="list-group-item">Родился: {{ $itemLittle['SBirthDate']  }}</li>
-       <li class="list-group-item">Учится в {{ $itemLittle['SClass'] }} классе</li>
+       <li class="list-group-item">Учится в {{ $itemLittle['classes_id'] }} классе</li>
        @endforeach
     </ul>
     <div><br></div>
@@ -33,7 +33,7 @@
                 <td>{{ $bornItem['SFirstName'] }}</td>
                 <td>{{ $bornItem['SMidName'] }}</td>
                 <td>{{ $bornItem['SBirthDate'] }}</td>
-                <td>{{ $bornItem['SClass'] }}</td>
+                <td>{{ $bornItem['classes_id'] }}</td>
             </tr>
         @endforeach
         </thead>

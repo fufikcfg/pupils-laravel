@@ -30,7 +30,6 @@ $(document).ready(function () {
                                    <td>${value.SLastName}</td>
                                    <td>${value.SFirstName}</td>
                                    <td>${value.SBirthDate}</td>
-                                   <td>${value.SClass}</td>
                                    <td><a href="/home/edit/${value.id}" id="btn-del" class="link-danger">Удалить</a></td>
                                 </tr>`
                     );

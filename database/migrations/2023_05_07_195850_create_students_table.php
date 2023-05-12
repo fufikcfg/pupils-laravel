@@ -15,12 +15,18 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('SLastName');
             $table->string('SFirstName');
+
             $table->string('SMidName');
-            $table->integer('SClass');
+            $table->integer('classes_id')->unsigned();
+
             $table->date('SBirthDate');
+
             $table->timestamps();
+
+            $table->foreign('classes_id')->references('id')->on('classes');
         });
     }
 
