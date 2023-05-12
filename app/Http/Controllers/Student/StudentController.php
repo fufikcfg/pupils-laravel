@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Http\Requests\StudentsStoreRequest;
 use App\Models\Students;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,28 +11,22 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(StudentsStoreRequest $request)
     {
         $student = new Students();
 
-        $this->validate($request, [
-            'surname' => 'required|min:1|max:25',
-            'name' => 'required|min:1|max:25',
-            'otchestvo' => 'required|min:1|max:25',
-            'date' => 'required',
-            'class' => 'required',
-        ]);
+        $request->validated();
 
         $student->SLastName = $request->input('surname');
         $student->SFirstName = $request->input('name');
-        $student->SMidName = $request->input('otchestvo');
+        $student->SMidName = $request->input('middleName');
 
         $student->SBirthDate = $request->input('date');
         $student->SClass = $request->input('class');
 
         $student->save();
 
-        return redirect('/home/create');
+        return back()->withInput();
     }
 
     public function showList(Request $request)
@@ -48,7 +43,7 @@ class StudentController extends Controller
     {
         Students::query()->where('id', $id)->delete();
 
-        return redirect('/home/list');
+        return back()->withInput();
     }
 
     public function showReport()

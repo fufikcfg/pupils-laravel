@@ -27,7 +27,7 @@
     <div class="input-group mb-3">
         <span class="input-group-text">@</span>
         <div class="form-floating">
-            <input type="text" name="otchestvo" class="form-control" id="floatingInputGroup1" placeholder="Отчество">
+            <input type="text" name="middleName" class="form-control" id="floatingInputGroup1" placeholder="Отчество">
         </div>
     </div>
     <div class="input-group mb-3">

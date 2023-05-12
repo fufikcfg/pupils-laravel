@@ -11,6 +11,8 @@
 |
 */
 
+use \App\Http\Controllers\Student\StudentController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,13 +33,13 @@ Route::group(['middleware' => 'admin'],function () {
         return view('list');
     })->name('list');
 
-    Route::post('/home/list/post', [\App\Http\Controllers\Student\StudentController::class, 'showList']);
+    Route::post('/home/list/post', [StudentController::class, 'showList']);
 
-    Route::post('/home/create/submit', [\App\Http\Controllers\Student\StudentController::class, 'store'])->name('create-student-submit');
+    Route::post('/home/create/submit', [StudentController::class, 'store'])->name('create-student-submit');
 
-    Route::get('/home/edit/{id}', [\App\Http\Controllers\Student\StudentController::class, 'destroy'])->name('destroy-student');
+    Route::get('/home/edit/{id}', [StudentController::class, 'destroy'])->name('destroy-student');
 
-    Route::get('/home/report', [\App\Http\Controllers\Student\StudentController::class, 'showReport'])->name('report');
+    Route::get('/home/report', [StudentController::class, 'showReport'])->name('report');
 });
 
 
