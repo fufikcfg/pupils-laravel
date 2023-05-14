@@ -3,47 +3,32 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Requests\StudentsStoreRequest;
-use App\Models\Classes;
 use App\Models\Students;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Psy\Command\ListCommand\ClassEnumerator;
 
-class StudentController extends Controller
+class StudentController extends BaseController
 {
 
     public function store(StudentsStoreRequest $request)
     {
-        $student = new Students();
+        $data = $request->validated();
 
-        $request->validated();
-
-        $student->SLastName = $request->input('surname');
-        $student->SFirstName = $request->input('name');
-        $student->SMidName = $request->input('middleName');
-
-        $student->SBirthDate = $request->input('date');
-        $student->SClass = $request->input('class');
-
-        $student->save();
+        $this->service->store($data);
 
         return back()->withInput();
     }
 
     public function showList(Request $request)
     {
-        $list = Students::query()->orderBy('SMidName', 'ASC')->where('classes_id', $request->valueElement)->get()->toArray();
-
         return [
             "status" => true,
-            "arrayID" => $list,
+            "arrayID" => $this->service->getList($request->valueElement),
         ];
     }
 
     public function destroy($id)
     {
-        Students::query()->where('id', $id)->delete();
+        $this->service->destroy($id);
 
         return back()->withInput();
     }

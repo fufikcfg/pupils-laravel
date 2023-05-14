@@ -7,6 +7,7 @@ use App\Models\Classes;
 
 class Students extends Model
 {
+    protected $guarded = [];
     protected $casts = [
         'SBirthDate' => 'datetime:d.m.Y',
     ];

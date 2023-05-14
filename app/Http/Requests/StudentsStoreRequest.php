@@ -24,11 +24,11 @@ class StudentsStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'surname' => 'required|min:1|max:25',
-            'name' => 'required|min:1|max:25',
-            'middleName' => 'required|min:1|max:25',
-            'date' => 'required',
-            'class' => 'required|min:1|max:11',
+            'SLastName' => 'required|min:1|max:25',
+            'SFirstName' => 'required|min:1|max:25',
+            'SMidName' => 'required|min:1|max:25',
+            'SBirthDate' => 'required',
+            'classes_id' => 'required',
         ];
     }
 }
