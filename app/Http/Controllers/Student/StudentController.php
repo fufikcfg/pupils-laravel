@@ -50,17 +50,13 @@ class StudentController extends Controller
 
     public function showReport()
     {
-//
-//        $a = Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->first();
-////        Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->take(1)->get()->toArray()
-//        dd($a->classes()->associate(Classes::find(1)->get()->toArray()));
         return view('report',
             [
-                'little' => Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->take(1)->get()->toArray(),
+                'little' => Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->with('classes')->get()->take(1)->toArray(),
 
                 'countTwoClass' => Students::query()->where('classes_id', 2)->count(),
 
-                'bornInJuly' => Students::query()->whereMonth('SBirthDate', 7)->get()->toArray(),
+                'bornInJuly' => Students::query()->whereMonth('SBirthDate', 7)->with('classes')->get()->toArray(),
             ]);
     }
 }
