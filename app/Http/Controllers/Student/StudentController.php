@@ -35,13 +35,6 @@ class StudentController extends BaseController
 
     public function showReport()
     {
-        return view('report',
-            [
-                'little' => Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->with('classes')->get()->take(1)->toArray(),
-
-                'countTwoClass' => Students::query()->where('classes_id', 2)->count(),
-
-                'bornInJuly' => Students::query()->whereMonth('SBirthDate', 7)->with('classes')->get()->toArray(),
-            ]);
+        return view('report', $this->service->getReport());
     }
 }

@@ -21,5 +21,31 @@ class Service
         Students::find($id)->delete();
     }
 
+    public function getLittleStudent()
+    {
+        return Students::query()->where('classes_id', 1)->orderByDesc('SBirthDate')->with('classes')->get()->take(1)->toArray();
+    }
+
+    public function getCountStudentsInTwoClass()
+    {
+        return Students::query()->where('classes_id', 2)->count();
+    }
+
+    public function getStudentsBornInJuly()
+    {
+        return Students::query()->whereMonth('SBirthDate', 7)->with('classes')->get()->toArray();
+    }
+
+    public function getReport()
+    {
+        return
+        [
+            'little' => $this->getLittleStudent(),
+
+            'countTwoClass' => $this->getCountStudentsInTwoClass(),
+
+            'bornInJuly' =>$this->getStudentsBornInJuly(),
+        ];
+    }
 }
 
