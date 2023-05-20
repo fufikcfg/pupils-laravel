@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -19,5 +19,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => 'admin',
         'password' => Hash::make('admin'),
         'remember_token' => str_random(10),
+        'api_token' => Str::random(60),
     ];
 });
