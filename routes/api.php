@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,15 @@ use Illuminate\Http\Request;
 */
 
 
-Route::group(['middleware' => 'auth:api'],function () {
-    Route::get('/test', function () {
-        return 123;
-    });
+Route::group(['middleware' => 'adminApi'], function () {
+
+//    Route::apiResources([
+//        'students' => Api\StudentController::class,
+////        'students/{id}' => Api\StudentController::class,
+//    ]);
+    Route::get('/students', [StudentController::class, 'index']);
+    Route::get('/students/{id}', [StudentController::class, 'show']);
+    Route::post('/students/create', [StudentController::class, 'store']);
+//    Route::get('/students', [StudentController::class, 'index']);
+//
 });

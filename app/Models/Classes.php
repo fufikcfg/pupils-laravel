@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Classes extends Model
 {
     public function students() {
-        return $this->belongsTo(Students::class);
+        return $this->hasMany(Students::class);
     }
 }
