@@ -17,13 +17,12 @@ use App\Http\Controllers\Api\StudentController;
 
 Route::group(['middleware' => 'adminApi'], function () {
 
-//    Route::apiResources([
-//        'students' => Api\StudentController::class,
-////        'students/{id}' => Api\StudentController::class,
-//    ]);
-    Route::get('/students', [StudentController::class, 'index']);
-    Route::get('/students/{id}', [StudentController::class, 'show']);
+    Route::post('/students/show', [StudentController::class, 'showList']);
+
     Route::post('/students/create', [StudentController::class, 'store']);
-//    Route::get('/students', [StudentController::class, 'index']);
-//
+
+    Route::get('/students/destroy/{id}', [StudentController::class, 'destroy']);
+
+    Route::get('/students/report', [StudentController::class, 'showReport']);
+
 });

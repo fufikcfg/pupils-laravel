@@ -27,7 +27,7 @@ class StudentsStoreRequest extends FormRequest
             'SLastName' => 'required|min:1|max:25|unique:students',
             'SFirstName' => 'required|min:1|max:25|unique:students',
             'SMidName' => 'required|min:1|max:25|unique:students',
-            'SBirthDate' => 'required',
+            'SBirthDate' => 'required|unique:students',
             'classes_id' => 'required',
         ];
     }
