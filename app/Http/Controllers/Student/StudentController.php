@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class StudentController extends BaseController
 {
-
     public function store(StudentsStoreRequest $request)
     {
         $data = $request->validated();
