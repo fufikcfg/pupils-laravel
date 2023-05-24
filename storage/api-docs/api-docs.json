@@ -135,7 +135,7 @@
                         "type": "string"
                     }
                 ],
-                "summary": "Deleted by id",
+                "summary": "Deleting by ID",
                 "responses": {
                     "200": {
                         "description": "{id} - deleted"
