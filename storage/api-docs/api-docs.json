@@ -15,44 +15,46 @@
                 "tags": [
                     "Students"
                 ],
+                "description": "ФИО, дата рождения и класс должны отправляться через header, но почему то не хочет",
                 "parameters": [
                     {
                         "in": "header",
-                        "name": "api_token",
-                        "description": "LcxyQXz5ipe39LtpVgIEEVM6GaP2i3ctBoYe5oCKWoabQeYzUIgcSEFjHPvI",
+                        "name": "Authorization",
+                        "description": "Bearer LcxyQXz5ipe39LtpVgIEEVM6GaP2i3ctBoYe5oCKWoabQeYzUIgcSEFjHPvI",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "in": "header",
+                        "in": "query",
                         "name": "SLastName",
                         "description": "Surname student",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "in": "header",
+                        "in": "query",
                         "name": "SFirstName",
                         "description": "Name student",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "in": "header",
+                        "in": "query",
                         "name": "SMidName",
                         "description": "MiddleName student",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "in": "header",
+                        "in": "query",
                         "name": "SBirthDate",
                         "description": "Student s date of birth",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "format": "date"
                     },
                     {
-                        "in": "header",
+                        "in": "query",
                         "name": "classes_id",
                         "description": "classes id student",
                         "required": true,
@@ -64,10 +66,10 @@
                     "200": {
                         "description": "Successful addition"
                     },
-                    "402": {
+                    "401": {
                         "description": "Unauthorized user"
                     },
-                    "417": {
+                    "422": {
                         "description": "Invalid validation"
                     }
                 }
@@ -78,10 +80,26 @@
                 "tags": [
                     "Students"
                 ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "description": "Bearer LcxyQXz5ipe39LtpVgIEEVM6GaP2i3ctBoYe5oCKWoabQeYzUIgcSEFjHPvI",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "valueElement",
+                        "description": "value element",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "summary": "Show list students by classes id",
                 "responses": {
                     "200": {
-                        "description": "Successful addition",
+                        "description": "Success",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -89,7 +107,7 @@
                             }
                         }
                     },
-                    "402": {
+                    "401": {
                         "description": "Unauthorized user"
                     }
                 }
@@ -121,7 +139,7 @@
                     "200": {
                         "description": "{id} - deleted"
                     },
-                    "402": {
+                    "401": {
                         "description": "Unauthorized user"
                     },
                     "400": {
@@ -152,7 +170,7 @@
                     "200": {
                         "description": "Show report"
                     },
-                    "402": {
+                    "401": {
                         "description": "Unauthorized user"
                     }
                 }
