@@ -80,6 +80,7 @@
                 "tags": [
                     "Students"
                 ],
+                "description": "Проблема такая же, как и с /create - не хочет передавать valueElement через header",
                 "parameters": [
                     {
                         "in": "header",
