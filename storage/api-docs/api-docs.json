@@ -115,7 +115,7 @@
             }
         },
         "/students/destroy/{id}": {
-            "get": {
+            "delete": {
                 "tags": [
                     "Students"
                 ],
