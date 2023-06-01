@@ -17,7 +17,7 @@ use App\Services\Student\Service;
  */
 class BaseController extends Controller
 {
-    public $service;
+    protected $service;
 
     public function __construct(Service $service)
     {
