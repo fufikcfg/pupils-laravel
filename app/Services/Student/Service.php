@@ -6,17 +6,17 @@ use App\Models\Students;
 
 class Service
 {
-    public function store($data)
+    public function store(array $data)
     {
         Students::create($data);
     }
 
-    public function getList($operator)
+    public function getList(int $operator)
     {
         return Students::query()->orderBy('id', 'ASC')->where('classes_id', $operator)->get()->toArray();
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         Students::find($id)->delete();
     }
