@@ -35,16 +35,3 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
 });
 
-
-//Route::group(['middleware' => 'adminApi'], function () {
-//
-//    Route::post('/students/show', [StudentController::class, 'showList']);
-//
-//    Route::post('/students/create', [StudentController::class, 'store']);
-//
-//    Route::get('/students/destroy/{id}', [StudentController::class, 'destroy']);
-//
-//    Route::get('/students/report', [StudentController::class, 'showReport']);
-//
-//});
-
