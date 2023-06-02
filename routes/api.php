@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Auth\ApiAuthController as ApiAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +25,13 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/students/report', [StudentController::class, 'showReport']);
 
-    Route::post('/logout', 'Auth\ApiAuthController@logout')->name('logout.api');
+    Route::post('/logout', [ApiAuthController::class, 'logout'])->name('logout.api');
 
 });
 
 Route::group(['middleware' => ['cors', 'json.response']], function () {
 
-    Route::post('/login', 'Auth\ApiAuthController@login')->name('login.api');
+    Route::post('/login', [ApiAuthController::class, 'login'])->name('login.api');
 
 });
 
