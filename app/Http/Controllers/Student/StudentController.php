@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\StudentsStoreRequest;
-use App\Models\Students;
 use Illuminate\Http\Request;
 
 class StudentController extends BaseController
@@ -12,7 +12,7 @@ class StudentController extends BaseController
     {
         $data = $request->validated();
 
-        $this->service->store($data);
+        $this->storeStudent($data);
 
         return back()->withInput();
     }

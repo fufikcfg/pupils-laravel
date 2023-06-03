@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Student\BaseController;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\StudentsStoreRequest;
+use App\Http\Resources\StudentResource;
+use App\Models\Students;
+use App\Responses\ApiJsonResponse;
 use Illuminate\Http\Request;
 
 class StudentController extends BaseController
@@ -13,7 +16,7 @@ class StudentController extends BaseController
      *     path="/students/create",
      *     summary="Create new student",
      *     tags={"Students"},
-     *     @SWG\Response(
+     *     @SWG\Responses(
      *         response=200,
      *         description="Successful addition",
      *         @SWG\Schema(
@@ -21,7 +24,7 @@ class StudentController extends BaseController
      *             @SWG\Items(ref="#/definitions/Students")
      *         ),
      *     ),
-     *     @SWG\Response(
+     *     @SWG\Responses(
      *         response="402",
      *         description="Unauthorized user",
      *     ),
@@ -31,12 +34,9 @@ class StudentController extends BaseController
     {
         $data = $request->validated();
 
-        $this->service->store($data);
+        $this->api->storeStudent($data);
 
-        return [
-            'message' => 'Successful addition',
-            'data' => $data
-        ];
+        return new StudentResource($data);
     }
 
     /**
@@ -44,7 +44,7 @@ class StudentController extends BaseController
      *     path="/students/show",
      *     summary="Show list students by classes id",
      *     tags={"Students"},
-     *     @SWG\Response(
+     *     @SWG\Responses(
      *         response=200,
      *         description="Successful addition",
      *         @SWG\Schema(
@@ -52,7 +52,7 @@ class StudentController extends BaseController
      *             @SWG\Items(ref="#/definitions/Students")
      *         ),
      *     ),
-     *     @SWG\Response(
+     *     @SWG\Responses(
      *         response="402",
      *         description="Unauthorized user",
      *     ),
@@ -60,7 +60,7 @@ class StudentController extends BaseController
      */
     public function showList(Request $request)
     {
-        return $this->service->getList($request->valueElement);
+        return $this->api->getList($request->valueElement);
     }
 
     /**
@@ -68,7 +68,7 @@ class StudentController extends BaseController
      *     path="/students/destroy/{id}",
      *     summary="Deleted by id",
      *     tags={"Students"},
-     *     @SWG\Response(
+     *     @SWG\Responses(
      *         response=200,
      *         description="{id} - deleted",
      *         @SWG\Schema(
@@ -76,7 +76,7 @@ class StudentController extends BaseController
      *             @SWG\Items(ref="#/definitions/Students")
      *         ),
      *     ),
-     *     @SWG\Response(
+     *     @SWG\Responses(
      *         response="402",
      *         description="Unauthorized user",
      *     ),
@@ -84,9 +84,7 @@ class StudentController extends BaseController
      */
     public function destroy($id)
     {
-        $this->service->destroy($id);
-
-        return sprintf('%d - deleted', $id);
+        return $this->api->destroy($id);
     }
 
     /**
@@ -94,7 +92,7 @@ class StudentController extends BaseController
      *     path="/students/report",
      *     summary="Show report",
      *     tags={"Students"},
-     *     @SWG\Response(
+     *     @SWG\Responses(
      *         response=200,
      *         description="Show report",
      *         @SWG\Schema(
@@ -102,7 +100,7 @@ class StudentController extends BaseController
      *             @SWG\Items(ref="#/definitions/Students")
      *         ),
      *     ),
-     *     @SWG\Response(
+     *     @SWG\Responses(
      *         response="402",
      *         description="Unauthorized user",
      *     ),
@@ -110,6 +108,6 @@ class StudentController extends BaseController
      */
     public function showReport()
     {
-        return $this->service->getReport();
+        return $this->api->getReport();
     }
 }
