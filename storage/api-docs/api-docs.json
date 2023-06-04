@@ -9,44 +9,102 @@
     "schemes": [
         "http"
     ],
+    "tags": [
+        {
+            "name": "Authorization",
+            "description": "Getting a token for authorization",
+            "externalDocs": {
+                "description": "For authorization is used",
+                "url": "/login"
+            }
+        },
+        {
+            "name": "Students",
+            "description": "Everything about students",
+            "externalDocs": {
+                "description": "To get",
+                "url": "/students/{method}"
+            }
+        }
+    ],
     "paths": {
-        "/students/create": {
+        "/login": {
             "post": {
                 "tags": [
-                    "Students"
+                    "Authorization"
                 ],
-                "description": "ФИО, дата рождения и класс должны отправляться через header, но почему то не хочет",
                 "parameters": [
                     {
                         "in": "header",
-                        "name": "Authorization",
-                        "description": "Bearer LcxyQXz5ipe39LtpVgIEEVM6GaP2i3ctBoYe5oCKWoabQeYzUIgcSEFjHPvI",
+                        "name": "name",
+                        "description": "account name",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "in": "query",
+                        "name": "password",
+                        "description": "account password",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "summary": "Getting a token for authorization",
+                "responses": {
+                    "200": {
+                        "description": "token: {token}"
+                    },
+                    "422": {
+                        "description": "User does not exist"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Session Destruction",
+                "responses": {
+                    "200": {
+                        "description": "You have been successfully logged out!"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/students/create": {
+            "post": {
+                "tags": [
+                    "Students"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
                         "name": "SLastName",
                         "description": "Surname student",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "in": "query",
+                        "in": "header",
                         "name": "SFirstName",
                         "description": "Name student",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "in": "query",
+                        "in": "header",
                         "name": "SMidName",
                         "description": "MiddleName student",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "in": "query",
+                        "in": "header",
                         "name": "SBirthDate",
                         "description": "Student s date of birth",
                         "required": true,
@@ -54,7 +112,7 @@
                         "format": "date"
                     },
                     {
-                        "in": "query",
+                        "in": "header",
                         "name": "classes_id",
                         "description": "classes id student",
                         "required": true,
@@ -64,10 +122,10 @@
                 "summary": "Create a new student",
                 "responses": {
                     "200": {
-                        "description": "Successful addition"
+                        "description": "Student {SLastName} {SFirstName} {SMidName} added"
                     },
                     "401": {
-                        "description": "Unauthorized user"
+                        "description": "Unauthorized"
                     },
                     "422": {
                         "description": "Invalid validation"
@@ -80,17 +138,9 @@
                 "tags": [
                     "Students"
                 ],
-                "description": "Проблема такая же, как и с /create - не хочет передавать valueElement через header",
                 "parameters": [
                     {
                         "in": "header",
-                        "name": "Authorization",
-                        "description": "Bearer LcxyQXz5ipe39LtpVgIEEVM6GaP2i3ctBoYe5oCKWoabQeYzUIgcSEFjHPvI",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
                         "name": "valueElement",
                         "description": "value element",
                         "required": true,
@@ -100,16 +150,10 @@
                 "summary": "Show list students by classes id",
                 "responses": {
                     "200": {
-                        "description": "Success",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Students"
-                            }
-                        }
+                        "description": "Success"
                     },
                     "401": {
-                        "description": "Unauthorized user"
+                        "description": "Unauthorized"
                     }
                 }
             }
@@ -121,18 +165,11 @@
                 ],
                 "parameters": [
                     {
-                        "in": "path",
+                        "in": "query",
                         "name": "id",
                         "description": "id",
                         "required": true,
                         "type": "integer"
-                    },
-                    {
-                        "in": "query",
-                        "name": "api_token",
-                        "description": "LcxyQXz5ipe39LtpVgIEEVM6GaP2i3ctBoYe5oCKWoabQeYzUIgcSEFjHPvI",
-                        "required": true,
-                        "type": "string"
                     }
                 ],
                 "summary": "Deleting by ID",
@@ -141,7 +178,7 @@
                         "description": "{id} - deleted"
                     },
                     "401": {
-                        "description": "Unauthorized user"
+                        "description": "Unauthorized"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
@@ -157,22 +194,13 @@
                 "tags": [
                     "Students"
                 ],
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "api_token",
-                        "description": "LcxyQXz5ipe39LtpVgIEEVM6GaP2i3ctBoYe5oCKWoabQeYzUIgcSEFjHPvI",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
                 "summary": "Show report",
                 "responses": {
                     "200": {
                         "description": "Show report"
                     },
                     "401": {
-                        "description": "Unauthorized user"
+                        "description": "Unauthorized"
                     }
                 }
             }
