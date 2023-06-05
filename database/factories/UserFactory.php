@@ -19,6 +19,5 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => 'admin',
         'password' => Hash::make('admin'),
         'remember_token' => str_random(10),
-        'api_token' => 'LcxyQXz5ipe39LtpVgIEEVM6GaP2i3ctBoYe5oCKWoabQeYzUIgcSEFjHPvI',
     ];
 });
