@@ -18,6 +18,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => 'admin',
         'password' => Hash::make('admin'),
+        'role_id' => 1,
         'remember_token' => str_random(10),
     ];
 });

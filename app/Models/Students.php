@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Classes;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Role;
+use Illuminate\Support\Facades\App;
 
 class Students extends Model
 {
@@ -13,6 +15,9 @@ class Students extends Model
     ];
 
     public function classes() {
-        return $this->belongsTo(Classes::class);
+        return $this->hasMany(Classes::class);
+    }
+    public function roles() {
+        return $this->hasMany(Role::class);
     }
 }
