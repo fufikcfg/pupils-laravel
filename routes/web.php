@@ -27,7 +27,7 @@ Route::group(['middleware' => 'admin'],function () {
 
     Route::get('/home/create', function () {
         return view('create');
-    })->name('create');
+    })->name('create')->middleware(['userRole']);
 
     Route::get('/home/list', function () {
         return view('list');
@@ -35,13 +35,13 @@ Route::group(['middleware' => 'admin'],function () {
 
     Route::post('/home/list/post', [StudentController::class, 'showList']);
 
-    Route::post('/home/create/submit', [StudentController::class, 'store'])->name('create-student-submit');
+    Route::post('/home/create/submit', [StudentController::class, 'store'])->name('create-student-submit')->middleware(['userRole']);
 
-    Route::get('/home/delete/{id}', [StudentController::class, 'destroy'])->name('destroy-student');
+    Route::get('/home/delete/{id}', [StudentController::class, 'destroy'])->name('destroy-student')->middleware(['userRole']);
 
-    Route::get('/home/edit/{id}', [StudentController::class, 'show'])->name('edit-student-form');
+    Route::get('/home/edit/{id}', [StudentController::class, 'show'])->name('edit-student-form')->middleware(['userRole']);
 
-    Route::post('/home/edit/{id}', [StudentController::class, 'update'])->name('update-student-submit');
+    Route::post('/home/edit/{id}', [StudentController::class, 'update'])->name('update-student-submit')->middleware(['userRole']);
 
     Route::get('/home/report', [StudentController::class, 'showReport'])->name('report');
 });
