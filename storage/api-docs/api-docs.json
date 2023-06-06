@@ -76,6 +76,25 @@
                 }
             }
         },
+        "/students/{id}": {
+            "get": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Get one students by id",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Student not fount"
+                    }
+                }
+            }
+        },
         "/students/create": {
             "post": {
                 "tags": [
@@ -115,6 +134,63 @@
                         "in": "header",
                         "name": "classes_id",
                         "description": "classes id student",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "summary": "Create a new student",
+                "responses": {
+                    "200": {
+                        "description": "Student {SLastName} {SFirstName} {SMidName} added"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Invalid validation"
+                    }
+                }
+            }
+        },
+        "/students/update/{id}": {
+            "post": {
+                "tags": [
+                    "Students"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "SLastName",
+                        "description": "new Surname student",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "SFirstName",
+                        "description": "new Name student",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "SMidName",
+                        "description": "new MiddleName student",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "SBirthDate",
+                        "description": "new Student s date of birth",
+                        "required": true,
+                        "type": "string",
+                        "format": "date"
+                    },
+                    {
+                        "in": "header",
+                        "name": "classes_id",
+                        "description": "new classes id student",
                         "required": true,
                         "type": "integer"
                     }

@@ -11,7 +11,14 @@ class Service extends ServiceAlias
 {
     public function getStudent($id)
     {
-        return new ApiJsonResponse(StudentResource::make(Students::find($id)));
+        $student = Students::find($id);
+
+        if(empty($student)) {
+
+            return new ApiJsonResponse(['message' => 'Student not fount']);
+        }
+
+        return new ApiJsonResponse(StudentResource::make($student));
     }
 
     public function updateStudent($data, $id)
