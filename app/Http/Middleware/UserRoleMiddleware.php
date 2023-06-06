@@ -20,6 +20,7 @@ class UserRoleMiddleware
         if(Auth::user()->role_id == 1) {
             return $next($request);
         }
-        return response()->json(['message' => 'Forbidden.'], 403);
+
+        return back()->withError('Недостаточно прав')->withInput();
     }
 }
