@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
     <div class="container text-center">
         <div class="row">
             <div class="col">
@@ -17,7 +20,4 @@
     <div>
         @yield('forms')
     </div>
-    @if (session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
 @endsection
