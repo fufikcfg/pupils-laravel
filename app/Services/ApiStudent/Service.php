@@ -9,6 +9,19 @@ use App\Services\Student\Service as ServiceAlias;
 
 class Service extends ServiceAlias
 {
+    public function getStudent($id)
+    {
+        return new ApiJsonResponse(StudentResource::make(Students::find($id)));
+    }
+
+    public function updateStudent($data, $id)
+    {
+        Students::find($id)
+            ->update($data);
+
+        return new ApiJsonResponse(['message' => sprintf('Данные %s %s %s обновлены', $data['SLastName'], $data['SFirstName'], $data['SMidName'])]);
+    }
+
     public function storeStudent(array $data)
     {
         Students::create($data);

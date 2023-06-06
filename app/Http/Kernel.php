@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminPanelMiddleware;
+use App\Http\Middleware\ApiUserRoleMiddleware;
 use App\Http\Middleware\AuthenticateApi;
 use App\Http\Middleware\UserRoleMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -70,5 +71,6 @@ class Kernel extends HttpKernel
         'json.response' => \App\Http\Middleware\ForceJsonResponse::class,
         'cors' => \App\Http\Middleware\Cors::class,
         'userRole' => UserRoleMiddleware::class,
+        'ApiUserRole' => ApiUserRoleMiddleware::class,
     ];
 }

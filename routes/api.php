@@ -17,11 +17,15 @@ use App\Http\Controllers\Auth\ApiAuthController;
 
 Route::middleware('auth:api')->group(function () {
 
+    Route::get('/students/{id}', [StudentController::class, 'show']);
+
     Route::post('/students/show', [StudentController::class, 'showList']);
 
-    Route::post('/students/create', [StudentController::class, 'store']);
+    Route::post('/students/create', [StudentController::class, 'store'])->middleware('ApiUserRole');
 
-    Route::get('/students/destroy/{id}', [StudentController::class, 'destroy']);
+    Route::post('/students/update/{id}', [StudentController::class, 'update'])->middleware('ApiUserRole');
+
+    Route::get('/students/destroy/{id}', [StudentController::class, 'destroy'])->middleware('ApiUserRole');
 
     Route::get('/students/report', [StudentController::class, 'showReport']);
 

@@ -13,7 +13,7 @@ class Service
 
     public function updateStudent($data, $id)
     {
-        Students::where('id', $id)
+        Students::find($id)
             ->update($data);
     }
     public function storeStudent(array $data)
