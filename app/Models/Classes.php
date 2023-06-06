@@ -9,6 +9,6 @@ class Classes extends Model
     public $timestamps = false;
 
     public function students() {
-        return $this->hasOne(Students::class);
+        return $this->belongsTo(Students::class);
     }
 }

@@ -15,7 +15,7 @@ class Students extends Model
     ];
 
     public function classes() {
-        return $this->hasMany(Classes::class);
+        return $this->belongsTo(Classes::class);
     }
     public function roles() {
         return $this->hasMany(Role::class);

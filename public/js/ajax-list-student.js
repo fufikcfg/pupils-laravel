@@ -30,15 +30,16 @@ $(document).ready(function () {
                                    <td>${value.SLastName}</td>
                                    <td>${value.SFirstName}</td>
                                    <td>${value.SBirthDate}</td>
-                                   <td><a href="/home/edit/${value.id}" id="btn-del" class="link-danger">Удалить</a></td>
-                                </tr>`
+                                   <td><a style="color: #b91d19" href="/home/delete/${value.id}" id="btn-del" class="link-danger">Удалить</a></td>
+                                   <td><a style="color: #4592ff;" href="/home/edit/${value.id}" class="link-danger">Изменить</a></td>
+                        </tr>`
                     );
                 }).join('');
                 const tableBody = document.querySelector("#tableBody");
                 tableBody.innerHTML = tableData;
 
                 $(document).ready(function () {
-                    $('.link-danger').click(function(e){
+                    $('#btn-del').click(function(e){
                         var result = confirm("Are you sure you want to delete this user?");
                         if(!result) {
                             e.preventDefault();

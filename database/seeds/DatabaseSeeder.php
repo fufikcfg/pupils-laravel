@@ -21,10 +21,10 @@ class DatabaseSeeder extends Seeder
 
 //        factory(RoleAlias::class)->state('role_a')->create();
 //        factory(RoleAlias::class)->state('role_b')->create();
-        factory(RoleAlias::class, 1)->create();
+//        factory(RoleAlias::class, 1)->create();
+//
+//        factory(\App\User::class, 1)->create();
 
-        factory(\App\User::class, 1)->create();
-
-        factory(Students::class, 1)->create();
+        factory(Students::class, 100)->create();
     }
 }

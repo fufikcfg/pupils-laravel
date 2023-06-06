@@ -6,6 +6,16 @@ use App\Models\Students;
 
 class Service
 {
+    public function getStudent($id)
+    {
+        return Students::find($id);
+    }
+
+    public function updateStudent($data, $id)
+    {
+        Students::where('id', $id)
+            ->update($data);
+    }
     public function storeStudent(array $data)
     {
         Students::create($data);

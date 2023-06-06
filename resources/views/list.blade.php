@@ -17,6 +17,7 @@
         <th>Отчество</th>
         <th>Дата рождения</th>
         <th>Удалить</th>
+        <th>Изменить</th>
     </tr>
     </thead>
     <tbody id="tableBody">

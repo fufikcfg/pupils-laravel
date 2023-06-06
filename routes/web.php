@@ -37,7 +37,11 @@ Route::group(['middleware' => 'admin'],function () {
 
     Route::post('/home/create/submit', [StudentController::class, 'store'])->name('create-student-submit');
 
-    Route::get('/home/edit/{id}', [StudentController::class, 'destroy'])->name('destroy-student');
+    Route::get('/home/delete/{id}', [StudentController::class, 'destroy'])->name('destroy-student');
+
+    Route::get('/home/edit/{id}', [StudentController::class, 'show'])->name('edit-student-form');
+
+    Route::post('/home/edit/{id}', [StudentController::class, 'update'])->name('update-student-submit');
 
     Route::get('/home/report', [StudentController::class, 'showReport'])->name('report');
 });
