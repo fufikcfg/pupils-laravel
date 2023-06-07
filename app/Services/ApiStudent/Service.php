@@ -9,13 +9,18 @@ use App\Services\Student\Service as ServiceAlias;
 
 class Service extends ServiceAlias
 {
+    public function notFound($message = 'Not found')
+    {
+        return new ApiJsonResponse(['message' => $message], 422);
+    }
+
     public function getStudent($id)
     {
         $student = Students::find($id);
 
         if(empty($student)) {
 
-            return new ApiJsonResponse(['message' => 'Student not fount']);
+            return $this->notFound();
         }
 
         return new ApiJsonResponse(StudentResource::make($student));
