@@ -9,7 +9,8 @@ use App\Services\Student\Service as ServiceAlias;
 
 class Service extends ServiceAlias
 {
-    public function notFound($message = 'Not found')
+    // добавлю exceptions/service, который покроет исключения
+    public function notFound(string $message = 'Not found')
     {
         return new ApiJsonResponse(['message' => $message], 422);
     }
